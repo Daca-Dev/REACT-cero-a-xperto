@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 import PrimeraApp from './PrimeraApp';
-import CounterApp from './CounterApp';
+// import CounterApp from './CounterApp';
 
 import './index.css'
 
@@ -19,7 +19,7 @@ ReactDom.render(saludo, appRoot);
 const appRoot = document.querySelector('#root');
 
 
-// ReactDom.render( <PrimeraApp saludo='Hola, soy Marcus Fenix!' />, appRoot);
+ReactDom.render( <PrimeraApp saludo='Hola, soy Marcus Fenix!' />, appRoot);
 // ReactDom.render( <PrimeraApp saludo='Hola mundo!' />, appRoot);
-ReactDom.render( <CounterApp value={ 5 }/>, appRoot);
+// ReactDom.render( <CounterApp value={ 5 }/>, appRoot);
 
