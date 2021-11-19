@@ -1,41 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { Message } from './Message';
+import React, { useEffect }  from 'react';
+import { useForm } from '../../hooks/useForm';
 
 import './form.css';
 
-export const SimpleForm = () => {
+export const FormWithCustomHook = () => {
 
-    const [formState, setFormState] = useState({
+    const [ formState, handleOnChange ] = useForm({
         username: '',
-        email: ''
+        email: '',
+        password: ''
     })
+    
+    const { username, email, password } = formState;
 
-    const { username, email } = formState;
-
-    // useEffect que solo se ejecuta una vez
     useEffect( () => {
-        console.log('Hey!');
-    }, [] )
-
-    // useEffect que solo se ejecuta cunado cambia el formState
-    useEffect( () => {
-        console.log('Cambio en formState!');
-    }, [ formState ]);
-
-    // useEffect que solo cambia cuando cambia el email
-    useEffect( () => {
-        console.log('Cambio en el input de email');
-    }, [ email ]);
-
-    const handleOnChange = ( { target } ) => {
-        setFormState({
-            ...formState,
-            [ target.name ]: target.value
-        })
-    }
-
+        console.log('Contraseña cambiada :P');
+    }, [ password ])
+        
     return (
-        <>
+        <form>
             <h1>Formulario sencillo</h1>
             <hr />
             <div className="form-control-group mb-3">
@@ -44,6 +27,7 @@ export const SimpleForm = () => {
                     name="username"
                     className="form-control"
                     placeholder="username"
+                    autoComplete='false'
                     value={ username }
                     onChange={ handleOnChange }
                 />
@@ -54,14 +38,22 @@ export const SimpleForm = () => {
                     name="email"
                     className="form-control"
                     placeholder="example@example.com"
+                    autoComplete='false'
                     value={ email }
                     onChange={ handleOnChange }
                 />
             </div>
-
-            { ( username === '123') && <Message /> }
-
-        </>
+            <div className="form-control-group mb-3">
+                <input 
+                    type="password"
+                    name="password"
+                    className="form-control"
+                    placeholder="example@example.com"
+                    value={ password }
+                    onChange={ handleOnChange }
+                />
+            </div>
+        </form>
     );
 
 }
