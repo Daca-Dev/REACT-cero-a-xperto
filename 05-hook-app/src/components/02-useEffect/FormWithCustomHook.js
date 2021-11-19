@@ -48,7 +48,7 @@ export const FormWithCustomHook = () => {
                     type="password"
                     name="password"
                     className="form-control"
-                    placeholder="example@example.com"
+                    placeholder="*********"
                     value={ password }
                     onChange={ handleOnChange }
                 />
