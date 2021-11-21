@@ -1,46 +1,27 @@
-import React, { useState, useCallback } from 'react';
-
-import './../02-useEffect/form.css';
+import React, { useCallback, useState } from 'react'
 import { ShowIncrement } from './ShowIncrement';
 
+import './../02-useEffect/form.css';
 
 export const CallbackHook = () => {
 
-    const [cont, setCont] = useState( 10 );
-    const [show, setShow] = useState( true );
+    const [counter, setCounter] = useState( 10 );
 
-    const procesoPesado = ( iteraciones ) => {
+    // const increment = () =>{
+    //     setCounter( c => c + 1);
+    // }
 
-        for (let i = 0; i < iteraciones; i++) {
-            console.log('Ahí vamos...');
-        }
-
-        return `${ iteraciones } iteraciones realizadas.`;
-    }
-
-    const increment = useCallback(
-        () => {
-            console.log('Aumentamos en 1 :D');
-            setCont( c => c + 1);
-        },
-        [ setCont ],
-    )
+    const increment = useCallback( () => {
+        setCounter( c => c + 1);
+    }, [ setCounter ] )
 
     return (
-        <div>
-            <h1>useCallabck Hook</h1>
+        <>
+            <h1>UseCallback</h1>
             <hr />
-            <h3>Counter: <small>{ cont }</small> </h3>
-            <p>{ procesoPesado }</p>
 
+            <h2>Counter: { counter }</h2>
             <ShowIncrement increment={ increment }/>
-            
-            <button
-                className='btn btn-danger ms-2'
-                onClick={ () => setShow( !show ) }
-            >
-                Show/Hide { JSON.stringify( show) }
-            </button>
-        </div>
+        </>
     )
 }
